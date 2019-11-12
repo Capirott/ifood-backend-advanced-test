@@ -57,7 +57,8 @@ public class OpenWeatherClientImpl implements OpenWeatherClient {
 	}
 	
 	@Override
-	@HystrixCommand(fallbackMethod = "getWeatherInfoByCoordinates")
+	@HystrixCommand(fallbackMethod = "getWeatherInfoByCoordinatesFallback", ignoreExceptions =
+			CityNotFoundException.class)
 	@Cacheable("openWeatherClientGetWeatherInfoByCoordinates")
 	public WeatherInfo getWeatherInfoByCoordinates(Float latitude, Float longitude)
 			throws ClientException, CityNotFoundException {

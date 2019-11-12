@@ -56,6 +56,8 @@ class TrackSuggestionControllerIT {
 	private static final String CITY_ENDPOINT = "/city/";
 	private static final String COORDINATES_ENDPOINT = "/coordinates/";
 	private static final String CITY = "California";
+	private static final String LATITUDE = "latitude";
+	private static final String LONGITUDE = "longitude";
 	
 	private String cityUrlHelsinki;
 	private String coordinatesUrl;
@@ -121,7 +123,7 @@ class TrackSuggestionControllerIT {
 	}
 	
 	@Test
-	void suggestTrackByCity_WhenUnauthorizedWeatherApi_FallbackMethodCalled() throws ClientException {
+	void suggestTrackByCity_ByCityWhenUnauthorizedWeatherApi_FallbackMethodCalled() throws ClientException {
 		willThrow(Unauthorized.class).given(restTemplate).getForEntity(any(URI.class), eq(Weather.class));
 		mockClientCredentials(restTemplate, createClientCredentials());
 		mockSpotifyTracks(restTemplate, createSpotifyTracks());
@@ -135,6 +137,23 @@ class TrackSuggestionControllerIT {
 		then(openWeatherClientFallback).should().getWeatherInfoByCity(CITY);
 		then(spotifyClient).should().suggestTracks(CLASSICAL);
 	}
+	
+	@Test
+	void suggestTrackByCity_ByCoordinatesWhenUnauthorizedWeatherApi_FallbackMethodCalled() throws ClientException {
+		willThrow(Unauthorized.class).given(restTemplate).getForEntity(any(URI.class), eq(Weather.class));
+		mockClientCredentials(restTemplate, createClientCredentials());
+		mockSpotifyTracks(restTemplate, createSpotifyTracks());
+		
+		final ResponseEntity<TracksSuggestions> entity = restTemplate.getForEntity(coordinatesUrl + "/10/11",
+				TracksSuggestions.class);
+		
+		softAssertion.assertThat(entity.getBody()).isNotNull();
+		softAssertion.assertThat(entity.getStatusCode()).isEqualByComparingTo(OK);
+		
+		then(openWeatherClientFallback).should().getWeatherInfoByCoordinates(10.0f, 11.0f);
+		then(spotifyClient).should().suggestTracks(CLASSICAL);
+	}
+	
 	
 	@Test
 	void suggestTrackByCity_WhenUnauthorizedSpotifyApi_FallbackMethodCalled()
@@ -158,7 +177,7 @@ class TrackSuggestionControllerIT {
 		final BadRequest exception = assertThrows(BadRequest.class,
 				() -> restTemplate.getForEntity(coordinatesUrl + "/91.0/100", TracksSuggestions.class));
 		
-		softAssertion.assertThat(exception.getResponseBodyAsString()).contains("latitude").doesNotContain("longitude");
+		softAssertion.assertThat(exception.getResponseBodyAsString()).contains(LATITUDE).doesNotContain(LONGITUDE);
 	}
 	
 	@Test

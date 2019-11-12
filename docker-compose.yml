@@ -5,13 +5,13 @@ services:
     build: config-service
     restart: always
     environment:
-      CONFIG_SERVICE_PASSWORD: config-password
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
     ports:
       - 8888:8888
 
   discovery-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: config-password
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
       CONFIG_SERVICE_URL: http://config-service:8888
     build: discovery-service
     restart: always
@@ -23,7 +23,7 @@ services:
 
   gateway-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: config-password
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
       CONFIG_SERVICE_URL: http://config-service:8888
       EUREKA_URL: http://discovery-service:8761
     build: gateway-service
@@ -36,9 +36,12 @@ services:
 
   track-suggestion-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: config-password
       CONFIG_SERVICE_URL: http://config-service:8888
       EUREKA_URL: http://discovery-service:8761
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
+      OPEN_WEATHER_APP_ID: ${OPEN_WEATHER_APP_ID}
+      SPOTIFY_CLIENT_ID: ${SPOTIFY_CLIENT_ID}
+      SPOTIFY_CLIENT_SECRET: ${SPOTIFY_CLIENT_SECRET}
     build: track-suggestion-service
     restart: always
     depends_on:
@@ -49,7 +52,7 @@ services:
 
   monitoring-service:
     environment:
-      CONFIG_SERVICE_PASSWORD: config-password
+      CONFIG_SERVICE_PASSWORD: ${CONFIG_SERVICE_PASSWORD}
       CONFIG_SERVICE_URL: http://config-service:8888
       EUREKA_URL: http://discovery-service:8761
     build: monitoring-service
@@ -58,7 +61,7 @@ services:
       config-service:
         condition: service_healthy
     ports:
-      - 9000:8080
+      - 9000:9000
 
 
 

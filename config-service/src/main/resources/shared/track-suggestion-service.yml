@@ -16,7 +16,7 @@ spring:
 
 openweather:
   api:
-    app-id: 00000000000000000000000000000000
+    app-id: ${OPEN_WEATHER_APP_ID:00000000000000000000000000000000}
     units: metric
     url-current-weather: https://api.openweathermap.org/data/2.5/weather
   fallback:
@@ -31,8 +31,8 @@ spotify:
   api:
     url-token: https://accounts.spotify.com/api/token
     url-recommendation: https://api.spotify.com/v1/recommendations
-    client-id: 00000000000000000000000000000000
-    client-secret: 00000000000000000000000000000000
+    client-id: ${SPOTIFY_CLIENT_ID:00000000000000000000000000000000}
+    client-secret: ${SPOTIFY_CLIENT_SECRET:00000000000000000000000000000000}
     track-recommendation-limit: 10
     track-recommendation-min-popularity: 0
 
