@@ -1,0 +1,67 @@
+server:
+  servlet:
+    context-path: /suggestions/tracks
+  port:
+    0
+
+logging:
+  level:
+    com.ifood.*: DEBUG
+
+spotify:
+  api:
+    url-token: https://accounts.spotify.com/api/token
+    url-recommendation: https://api.spotify.com/v1/recommendations
+    client-id: 00000000000000000000000000000000
+    client-secret: 00000000000000000000000000000000
+    track-recommendation-limit: 11
+    track-recommendation-min-popularity: 22
+
+  fallback:
+    tracks:
+      POP:
+        - albumName: 12 Years A Slave (Music From and Inspired by the Motion Picture)
+          name: Solomon
+          popularity: 51
+          previewUrl: https://p.scdn.co/mp3-preview/e558143ee4bdb387667fedf764f5b11ffc3f9194?cid=5ccb137953434617847b5aa4b55c6115
+      CLASSICAL:
+        - albumName: 12 Years A Slave (Music From and Inspired by the Motion Picture)
+          name: Solomon
+          popularity: 51
+          previewUrl: https://p.scdn.co/mp3-preview/e558143ee4bdb387667fedf764f5b11ffc3f9194?cid=5ccb137953434617847b5aa4b55c6115
+      ROCK:
+        - albumName: The Animals
+          name: House Of The Rising Sun
+          popularity: 70
+          previewUrl:
+      PARTY:
+        - albumName: Don't You Worry Child
+          name: Don't You Worry Child - Radio Edit
+          popularity: 78
+          previewUrl:
+
+openweather:
+  api:
+    app-id: 00000000000000000000000000000000
+    units: metric
+    url-current-weather: https://api.openweathermap.org/data/2.5/weather
+
+  fallback:
+    weather:
+      info:
+        country: FI
+        latitude: 64.13f
+        longitude: 28.39f
+        temperature: -35.0f
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+spring:
+  cache:
+    type: NONE

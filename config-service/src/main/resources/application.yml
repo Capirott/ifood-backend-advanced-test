@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: @project.name@
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/shared
+
+  profiles:
+    active: native
+
+  security:
+    user:
+      password: ${CONFIG_SERVICE_PASSWORD:default}
+
+server:
+  port: 8888

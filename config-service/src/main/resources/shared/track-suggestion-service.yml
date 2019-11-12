@@ -1,0 +1,209 @@
+server:
+  servlet:
+    context-path: /suggestions/tracks
+  port:
+    8989
+
+logging:
+  level:
+    com.ifood.*: DEBUG
+
+spring:
+  cache:
+    cache-names: suggestTracksByCityName, suggestTracksByCoordinates, spotifyClientSuggestTracks, openWeatherClientGetWeatherInfoByCity, openWeatherClientGetWeatherInfoByCoordinates
+    caffeine:
+      spec: maximumSize=100, expireAfterAccess=30s
+
+openweather:
+  api:
+    app-id: 00000000000000000000000000000000
+    units: metric
+    url-current-weather: https://api.openweathermap.org/data/2.5/weather
+  fallback:
+    weather:
+      info:
+        country: FI
+        latitude: 64.13f
+        longitude: 28.39f
+        temperature: -35.0f
+
+spotify:
+  api:
+    url-token: https://accounts.spotify.com/api/token
+    url-recommendation: https://api.spotify.com/v1/recommendations
+    client-id: 00000000000000000000000000000000
+    client-secret: 00000000000000000000000000000000
+    track-recommendation-limit: 10
+    track-recommendation-min-popularity: 0
+
+  fallback:
+    tracks:
+      POP:
+        - albumName: 12 Years A Slave (Music From and Inspired by the Motion Picture)
+          name: Solomon
+          popularity: 51
+          previewUrl: https://p.scdn.co/mp3-preview/e558143ee4bdb387667fedf764f5b11ffc3f9194?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Extreme Classics
+          name: '1812 Festival Overture, Op. 49: 1812 Overture, Op. 49: Finale'
+          popularity: 41
+          previewUrl: https://p.scdn.co/mp3-preview/60e601399a94b7b99e93997d49c0a991fe90ed2c?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Albinoni: Oboe Concertos, Vol. 2'
+          name: 'Oboe Concerto in F Major, Op. 7, No. 9: II. Adagio'
+          popularity: 40
+          previewUrl: https://p.scdn.co/mp3-preview/b638223b7bd49032c2b4250e9cc87abe639ac8d2?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Beethoven : Symphonies Nos 1 - 9'
+          name: 'Beethoven : Symphony No.9 in D Minor Op.125 : IV Presto - Allegro assai -
+        ''Ode to Joy'''
+          popularity: 36
+          previewUrl: https://p.scdn.co/mp3-preview/ed0563548dd58499bd14bcad152a0dd4b3ac7de5?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Verdi: La traviata'
+          name: 'Verdi: La Traviata: Prelude to Act 1'
+          popularity: 34
+          previewUrl: https://p.scdn.co/mp3-preview/08a4193748af25e901b633766c6d06a9abf618fd?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Rimsky-Korsakov: Scheherazade, Op. 35; Capriccio espagnol, Op. 34'
+          name: 'Capriccio Espagnol, Op.34: 1. Alborada'
+          popularity: 27
+          previewUrl: ''
+        - albumName: 'John Luther Adams: In the White Silence'
+          name: 'In The White Silence: Letter B'
+          popularity: 25
+          previewUrl: https://p.scdn.co/mp3-preview/6f6cfd935c50462f22fbe3b1e1d18b9864772709?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Ralph Vaughan Williams & James MacMillan: Oboe Concertos'
+          name: 'Oboe Concerto: Oboe Concerto: III. Allegro'
+          popularity: 24
+          previewUrl: https://p.scdn.co/mp3-preview/d72b5770d6ac3cd4545c9907382f19212db89fa1?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Offenbach: Orphee aux enfers'
+          name: 'Orphée aux enfers, ACT 2, Troisième tableau: un roi de Béotie - Le boudoir
+        de Pluton: Galop'
+          popularity: 24
+          previewUrl: https://p.scdn.co/mp3-preview/440663dbddc990f481ecd72aa5455427dda6ad4d?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Bartok / Khachaturian / Milhaud / Stravinsky: Clarinet Trios'
+          name: 'Suite for Violin, Clarinet and Piano, Op. 157b: II. Divertissement - Anime'
+          popularity: 0
+          previewUrl: ''
+      CLASSICAL:
+        - albumName: 12 Years A Slave (Music From and Inspired by the Motion Picture)
+          name: Solomon
+          popularity: 51
+          previewUrl: https://p.scdn.co/mp3-preview/e558143ee4bdb387667fedf764f5b11ffc3f9194?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Extreme Classics
+          name: '1812 Festival Overture, Op. 49: 1812 Overture, Op. 49: Finale'
+          popularity: 41
+          previewUrl: https://p.scdn.co/mp3-preview/60e601399a94b7b99e93997d49c0a991fe90ed2c?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Albinoni: Oboe Concertos, Vol. 2'
+          name: 'Oboe Concerto in F Major, Op. 7, No. 9: II. Adagio'
+          popularity: 40
+          previewUrl: https://p.scdn.co/mp3-preview/b638223b7bd49032c2b4250e9cc87abe639ac8d2?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Beethoven : Symphonies Nos 1 - 9'
+          name: 'Beethoven : Symphony No.9 in D Minor Op.125 : IV Presto - Allegro assai -
+          ''Ode to Joy'''
+          popularity: 36
+          previewUrl: https://p.scdn.co/mp3-preview/ed0563548dd58499bd14bcad152a0dd4b3ac7de5?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Verdi: La traviata'
+          name: 'Verdi: La Traviata: Prelude to Act 1'
+          popularity: 34
+          previewUrl: https://p.scdn.co/mp3-preview/08a4193748af25e901b633766c6d06a9abf618fd?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Rimsky-Korsakov: Scheherazade, Op. 35; Capriccio espagnol, Op. 34'
+          name: 'Capriccio Espagnol, Op.34: 1. Alborada'
+          popularity: 27
+          previewUrl:
+        - albumName: 'John Luther Adams: In the White Silence'
+          name: 'In The White Silence: Letter B'
+          popularity: 25
+          previewUrl: https://p.scdn.co/mp3-preview/6f6cfd935c50462f22fbe3b1e1d18b9864772709?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Ralph Vaughan Williams & James MacMillan: Oboe Concertos'
+          name: 'Oboe Concerto: Oboe Concerto: III. Allegro'
+          popularity: 24
+          previewUrl: https://p.scdn.co/mp3-preview/d72b5770d6ac3cd4545c9907382f19212db89fa1?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Offenbach: Orphee aux enfers'
+          name: 'Orphée aux enfers, ACT 2, Troisième tableau: un roi de Béotie - Le boudoir
+          de Pluton: Galop'
+          popularity: 24
+          previewUrl: https://p.scdn.co/mp3-preview/440663dbddc990f481ecd72aa5455427dda6ad4d?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: 'Bartok / Khachaturian / Milhaud / Stravinsky: Clarinet Trios'
+          name: 'Suite for Violin, Clarinet and Piano, Op. 157b: II. Divertissement - Anime'
+          popularity: 0
+          previewUrl:
+      ROCK:
+        - albumName: The Animals
+          name: House Of The Rising Sun
+          popularity: 70
+          previewUrl:
+        - albumName: The River
+          name: Hungry Heart
+          popularity: 70
+          previewUrl: https://p.scdn.co/mp3-preview/9b30e413e6060fa47768df99c0ac8ab9906f07e8?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Quarter Past Midnight
+          name: Quarter Past Midnight
+          popularity: 69
+          previewUrl:
+        - albumName: Tranquility Base Hotel & Casino
+          name: Four Out Of Five
+          popularity: 63
+          previewUrl: https://p.scdn.co/mp3-preview/50649285856b2324b33046c6b1e03172ee90e808?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Lewis Del Mar
+          name: Painting (Masterpiece)
+          popularity: 59
+          previewUrl: https://p.scdn.co/mp3-preview/862cb96402d381a5cfc6e4ad9e94a5d179394cd7?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Graveyard Shift
+          name: Necessary Evil (feat. Jonathan Davis)
+          popularity: 56
+          previewUrl: https://p.scdn.co/mp3-preview/799e738fb632428fc11b0432c6edda185c5fd5e9?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Red, Green or Inbetween
+          name: Eastbound & Down
+          popularity: 51
+          previewUrl: https://p.scdn.co/mp3-preview/256cc9a63cdf4152176e93127c3c39e1605adc86?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: The Canyon
+          name: Over and Over Again
+          popularity: 45
+          previewUrl: https://p.scdn.co/mp3-preview/5b69833bde4be5f3c995d45180c77f9e1b6d298b?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Who's Next
+          name: Behind Blue Eyes
+          popularity: 36
+          previewUrl:
+        - albumName: Aggressive
+          name: Hated
+          popularity: 32
+          previewUrl: https://p.scdn.co/mp3-preview/8a6865311c7ca00ac2821f94e1c382dcb2239998?cid=5ccb137953434617847b5aa4b55c6115
+      PARTY:
+        - albumName: Don't You Worry Child
+          name: Don't You Worry Child - Radio Edit
+          popularity: 78
+          previewUrl:
+        - albumName: Clarity
+          name: Clarity
+          popularity: 75
+          previewUrl:
+        - albumName: Save Rock And Roll
+          name: My Songs Know What You Did In The Dark (Light Em Up)
+          popularity: 69
+          previewUrl:
+        - albumName: More Than A Game
+          name: Forever
+          popularity: 69
+          previewUrl:
+        - albumName: If Tomorrow Comes...
+          name: All the Above (feat. T-Pain)
+          popularity: 62
+          previewUrl: https://p.scdn.co/mp3-preview/288e06bbb93bf51788ca9e97907ecbde59e135ab?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Loud
+          name: Cheers (Drink To That)
+          popularity: 58
+          previewUrl:
+        - albumName: good kid, m.A.A.d city
+          name: Backseat Freestyle
+          popularity: 56
+          previewUrl:
+        - albumName: Ayy Ladies (Explicit Version)
+          name: Ayy Ladies
+          popularity: 53
+          previewUrl: https://p.scdn.co/mp3-preview/1b8492aa881897b3d0650066f6ff467b288b9632?cid=5ccb137953434617847b5aa4b55c6115
+        - albumName: Love Me
+          name: Love Me
+          popularity: 44
+          previewUrl:
+        - albumName: 'True'
+          name: Hey Brother
+          popularity: 21
+          previewUrl:
+
