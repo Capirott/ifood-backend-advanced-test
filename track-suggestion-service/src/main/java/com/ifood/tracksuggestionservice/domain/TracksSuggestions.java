@@ -1,6 +1,7 @@
 package com.ifood.tracksuggestionservice.domain;
 
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TracksSuggestions {
+	@ApiModelProperty("Genre's list of the recommended songs")
 	private List<TrackGenre> genres;
+	@ApiModelProperty("The list of recommended tracks")
 	private List<TrackInfo> tracks;
 }

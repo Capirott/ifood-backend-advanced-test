@@ -156,10 +156,10 @@ class TrackSuggestionControllerIT {
 	
 	
 	@Test
-	void suggestTrackByCity_WhenUnauthorizedSpotifyApi_FallbackMethodCalled()
+	void suggestTrackByCity_WhenBadRequestSpotifyApi_FallbackMethodCalled()
 			throws ClientException, CityNotFoundException {
 		mockWeather(restTemplate, createWeather());
-		willThrow(Unauthorized.class).given(restTemplate)
+		willThrow(BadRequest.class).given(restTemplate)
 				.postForObject(anyString(), any(HttpEntity.class), eq(ClientCredentials.class));
 		
 		final ResponseEntity<TracksSuggestions> entity = restTemplate
